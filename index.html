@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSB - Laboratoire d'Analyses Médicales | Joyeuses Pâques</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0b2d4e;
+            --blue: #1a56a0;
+            --spring: #3a9e6f;
+            --spring-light: #4ec98a;
+            --white: #ffffff;
+            --off-white: #f4fbf7;
+            --grey: #8a96a8;
+            --dark: #111827;
+            --border: #d1ead9;
+            --shadow: 0 4px 24px rgba(11,45,78,0.10);
+            --shadow-lg: 0 12px 48px rgba(11,45,78,0.15);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+
+        /* FALLING EGGS */
+        .eggs-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .egg { position: absolute; top: -30px; opacity: 0; animation: eggfall linear infinite; }
+        @keyframes eggfall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(108vh) rotate(220deg); opacity: 0; }
+        }
+
+        /* EASTER BANNER */
+        .easter-banner {
+            background: linear-gradient(90deg, #1e7a55 0%, #1a56a0 50%, #1e7a55 100%);
+            color: #fff; padding: 0.55rem 2rem; text-align: center;
+            font-size: 0.82rem; font-weight: 600; letter-spacing: 0.6px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .easter-banner:hover { opacity: 0.9; }
+
+        /* HEADER */
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--white); border-bottom: 1px solid var(--border); box-shadow: 0 2px 16px rgba(11,45,78,0.07); }
+        nav { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+        .logo-wrap { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+        .logo-emblem { width: 42px; height: 42px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .logo-text .brand { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--navy); line-height: 1; }
+        .logo-text .tagline { font-size: 0.68rem; color: var(--grey); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+        .nav-links { display: flex; list-style: none; gap: 0.25rem; }
+        .nav-links a { color: var(--dark); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.85rem; border-radius: 8px; transition: all 0.2s; }
+        .nav-links a:hover { background: var(--off-white); color: var(--spring); }
+        .nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 0.5rem 1.2rem !important; }
+        .nav-cta:hover { background: var(--blue) !important; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0b2d4e 0%, #134d8a 50%, #1e7a55 100%);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 10rem 2rem 6rem; position: relative; overflow: hidden;
+        }
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; }
+        .hero-orb.o1 { width: 500px; height: 500px; background: #4ec98a; top: -150px; right: -100px; }
+        .hero-orb.o2 { width: 350px; height: 350px; background: #a78bfa; bottom: -100px; left: -50px; }
+        .hero-orb.o3 { width: 250px; height: 250px; background: #fbbf24; top: 40%; left: 5%; }
+        .hero-content { max-width: 780px; position: relative; z-index: 2; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: rgba(78,201,138,0.15); border: 1px solid rgba(78,201,138,0.4);
+            color: #7ef5b8; padding: 0.4rem 1.1rem; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2rem;
+        }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--white); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero h1 em { font-style: italic; color: #7ef5b8; }
+        .hero .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; font-weight: 300; letter-spacing: 1px; text-transform: uppercase; }
+        .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.82); max-width: 600px; margin: 0 auto 3rem; line-height: 1.8; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem; border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+        .btn-spring { background: var(--spring); color: #fff; }
+        .btn-spring:hover { background: var(--spring-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(58,158,111,0.4); }
+        .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.4); color: var(--white); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* SECTIONS */
+        .section-wrap { max-width: 1320px; margin: 0 auto; padding: 6rem 2.5rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--navy); margin-bottom: 1rem; }
+        .section-header p { color: var(--grey); font-size: 1.05rem; max-width: 580px; margin: 0 auto; }
+        .divider { width: 56px; height: 3px; background: var(--spring); margin: 1.2rem auto 0; border-radius: 2px; }
+
+        /* SERVICES */
+        #services { background: var(--off-white); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .service-card { background: var(--white); border-radius: 16px; padding: 2.5rem 2rem; border: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden; }
+        .service-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--spring); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        .service-card:hover::after { transform: scaleY(1); }
+        .service-icon-wrap { width: 56px; height: 56px; background: #eef9f3; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: background 0.3s; }
+        .service-card:hover .service-icon-wrap { background: var(--spring); }
+        .service-card:hover .service-icon-wrap svg { color: var(--white); }
+        .service-icon-wrap svg { color: var(--spring); transition: color 0.3s; }
+        .service-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+        .service-card p { color: var(--grey); font-size: 0.95rem; line-height: 1.7; }
+
+        /* ABOUT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .about-text h3 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 1.5rem; line-height: 1.2; }
+        .about-text p { color: #4b5563; margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.85; }
+        .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+        .feature-item { display: flex; align-items: center; gap: 0.75rem; background: var(--off-white); padding: 0.9rem 1rem; border-radius: 10px; }
+        .feature-item svg { flex-shrink: 0; color: var(--spring); }
+        .feature-item span { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s; }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--spring); }
+        .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: var(--navy); line-height: 1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.85rem; color: var(--grey); font-weight: 500; }
+
+        /* EASTER SECTION */
+        .easter-section { background: linear-gradient(135deg, #0b2d4e 0%, #1e7a55 100%); position: relative; overflow: hidden; }
+        .easter-section .section-wrap { padding: 5rem 2.5rem; text-align: center; }
+        .easter-deco { position: absolute; opacity: 0.05; }
+        .easter-deco.left { left: -40px; top: 50%; transform: translateY(-50%); }
+        .easter-deco.right { right: -40px; top: 50%; transform: translateY(-50%) scaleX(-1); }
+        .easter-section h2 { font-family: 'DM Serif Display', serif; color: var(--white) !important; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        .easter-section .divider { background: #7ef5b8; }
+
+        .egg-strip { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .egg-strip svg { animation: wobble 2s ease-in-out infinite; }
+        .egg-strip svg:nth-child(2) { animation-delay: 0.15s; }
+        .egg-strip svg:nth-child(3) { animation-delay: 0.3s; }
+        .egg-strip svg:nth-child(4) { animation-delay: 0.45s; }
+        .egg-strip svg:nth-child(5) { animation-delay: 0.6s; }
+        @keyframes wobble { 0%,100% { transform: rotate(-7deg) translateY(0); } 50% { transform: rotate(7deg) translateY(-5px); } }
+
+        .easter-intro { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 580px; margin: 1rem auto 2.5rem; }
+
+        .hours-card { display: inline-block; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 2.5rem 3.5rem; backdrop-filter: blur(10px); text-align: left; }
+        .hours-title { display: flex; align-items: center; gap: 0.75rem; color: #7ef5b8; font-size: 0.88rem; font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hours-row { display: flex; align-items: baseline; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.95rem; }
+        .hours-row:last-of-type { border-bottom: none; }
+        .hours-row .day { color: rgba(255,255,255,0.55); min-width: 220px; font-weight: 400; }
+        .hours-row .time { color: var(--white); font-weight: 600; }
+        .hours-row .time.closed { color: #fca5a5; }
+        .hours-note { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; color: #7ef5b8; font-size: 0.88rem; font-weight: 600; }
+
+        /* CONTACT */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 1rem; }
+        .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; }
+        .form-card h3 { font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 0.95rem; color: var(--dark); background: var(--off-white); transition: all 0.2s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--spring); background: var(--white); box-shadow: 0 0 0 3px rgba(58,158,111,0.1); }
+        .form-group textarea { resize: vertical; min-height: 130px; }
+        .btn-submit { width: 100%; padding: 1rem; background: var(--navy); color: var(--white); border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+        .btn-submit:hover { background: var(--spring); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(58,158,111,0.3); }
+        .info-card { background: var(--navy); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden; }
+        .info-card-bg { position: absolute; bottom: -40px; right: -40px; opacity: 0.05; }
+        .info-card h3 { color: var(--white); font-size: 1.35rem; font-weight: 700; margin-bottom: 2rem; }
+        .info-item { display: flex; gap: 1rem; margin-bottom: 1.75rem; position: relative; z-index: 1; }
+        .info-item:last-child { margin-bottom: 0; }
+        .info-icon-box { width: 44px; height: 44px; flex-shrink: 0; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .info-icon-box svg { color: #7ef5b8; }
+        .info-item strong { display: block; color: #7ef5b8; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.3rem; }
+        .info-item span, .info-item a { color: rgba(255,255,255,0.82); font-size: 0.93rem; text-decoration: none; }
+        .info-item a:hover { color: var(--white); }
+
+        /* FOOTER */
+        footer { background: #060f1a; color: rgba(255,255,255,0.65); padding: 4rem 2.5rem 2rem; }
+        .footer-grid { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .footer-brand .brand-name { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: block; }
+        .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 300px; }
+        .footer-spring { color: #7ef5b8; margin-top: 1rem; font-size: 0.88rem; font-weight: 500; }
+        .footer-col h4 { color: var(--white); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.25rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: #7ef5b8; }
+        .footer-bottom { max-width: 1320px; margin: 0 auto; padding-top: 1.75rem; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; }
+        .iso-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(78,201,138,0.12); border: 1px solid rgba(78,201,138,0.3); color: #7ef5b8; padding: 0.3rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-weight: 600; }
+
+        /* NOTIFICATION */
+        .notification { position: fixed; bottom: 2rem; right: 2rem; background: var(--navy); color: var(--white); border-radius: 14px; padding: 1.2rem 1.5rem; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 1rem; transform: translateX(200%); transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); z-index: 5000; min-width: 300px; border-left: 4px solid var(--spring); }
+        .notification.show { transform: translateX(0); }
+        .notification strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .notification span { font-size: 0.85rem; opacity: 0.75; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .nav-links { position: fixed; top: 107px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: all 0.3s; gap: 0.25rem; }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .services-grid { grid-template-columns: 1fr; }
+            .features-list, .stats-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .hours-card { padding: 1.5rem; }
+            .hours-row .day { min-width: 150px; font-size: 0.85rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-badge { animation: fadeUp 0.7s 0.1s both; }
+        .hero h1 { animation: fadeUp 0.7s 0.25s both; }
+        .hero .subtitle { animation: fadeUp 0.7s 0.35s both; }
+        .hero p { animation: fadeUp 0.7s 0.45s both; }
+        .cta-buttons { animation: fadeUp 0.7s 0.55s both; }
+    </style>
+</head>
+<body>
+
+<div class="eggs-layer" id="eggsLayer"></div>
+
+<header>
+    <div class="easter-banner" id="easterBanner">
+        <svg width="14" height="18" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#f472b6"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#fbbf24" opacity="0.85"/></svg>
+        Joyeuses Pâques ! — Horaires spéciaux week-end de Pâques &nbsp;·&nbsp; Cliquez pour consulter
+        <svg width="14" height="18" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#60a5fa"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#a78bfa" opacity="0.85"/></svg>
+    </div>
+    <nav>
+        <a class="logo-wrap" href="#accueil">
+            <div class="logo-emblem">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 8v8M8 12h8"/></svg>
+            </div>
+            <div class="logo-text">
+                <div class="brand">GSB</div>
+                <div class="tagline">Excellence &amp; Innovation</div>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#paques">Horaires Pâques</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+    </nav>
+</header>
+
+<section id="accueil" class="hero">
+    <div class="hero-orb o1"></div>
+    <div class="hero-orb o2"></div>
+    <div class="hero-orb o3"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <svg width="11" height="14" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#7ef5b8"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#fbbf24" opacity="0.8"/></svg>
+            Joyeuses Pâques 2025
+        </div>
+        <h1>Galaxy Swiss <em>Bourdin</em></h1>
+        <p class="subtitle">Laboratoire d'Analyses Médicales de Référence</p>
+        <p>Excellence scientifique et technologies de pointe pour des résultats fiables et rapides. Nous vous accompagnons avec professionnalisme durant tout le week-end de Pâques.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-spring">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Prendre Rendez-vous
+            </a>
+            <a href="#services" class="btn btn-outline">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Nos Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="section-wrap">
+        <div class="section-header">
+            <h2>Nos Services d'Excellence</h2>
+            <div class="divider"></div>
+            <p>Une gamme complète d'analyses médicales avec des équipements de dernière génération</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0H3m18-11v11m0 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5m18 0H3"/></svg></div>
+                <h3>Analyses Biologiques</h3>
+                <p>Examens complets de biochimie, hématologie et immunologie. Résultats rapides avec interprétation par nos biologistes certifiés.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v2m0 8v2M6 12H4m16 0h-2"/></svg></div>
+                <h3>Analyses Génétiques</h3>
+                <p>Tests ADN avancés et analyses moléculaires pour le diagnostic précis des maladies héréditaires et conseil génétique personnalisé.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h3>Microbiologie</h3>
+                <p>Identification rapide des agents infectieux avec antibiogramme. Expertise dans le diagnostic des infections virales et bactériennes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <h3>Prélèvements à Domicile</h3>
+                <p>Service de prélèvement professionnel à votre domicile pour votre confort et celui de vos proches. Disponible 7j/7.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <h3>Analyses Urgentes</h3>
+                <p>Traitement prioritaire 24h/24 pour les analyses urgentes avec résultats le jour même. Disponible durant le week-end de Pâques.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <h3>Bilans de Santé Complets</h3>
+                <p>Check-ups personnalisés et bilans préventifs adaptés à vos besoins. Profitez du printemps pour prendre soin de votre santé.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="section-wrap">
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Excellence et Innovation depuis 2009</h3>
+                <p>Le laboratoire <strong>Galaxy Swiss Bourdin (GSB)</strong> est issu de la fusion stratégique entre le géant américain Galaxy, spécialisé dans le secteur des maladies virales dont le SIDA et les hépatites, et le conglomérat européen Swiss Bourdin, reconnu pour son expertise en médicaments conventionnels.</p>
+                <p>Depuis 2009, GSB s'est imposé comme un <strong>leader incontesté</strong> du secteur pharmaceutique européen, avec son siège administratif établi à Paris. Expertise scientifique, technologies de pointe et engagement humain pour des résultats d'une fiabilité absolue.</p>
+                <p>Notre engagement envers l'excellence se reflète dans notre plateau technique ultramoderne, notre personnel hautement qualifié et notre respect strict des normes ISO 15189.</p>
+                <div class="features-list">
+                    <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Certification ISO 15189</span></div>
+                    <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Équipements Dernière Génération</span></div>
+                    <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Biologistes Certifiés</span></div>
+                    <div class="feature-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Résultats Sécurisés en Ligne</span></div>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number">16</div><div class="stat-label">Années d'Excellence</div></div>
+                <div class="stat-card"><div class="stat-number">50K+</div><div class="stat-label">Analyses par An</div></div>
+                <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Disponibilité</div></div>
+                <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Fiabilité</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="paques" class="easter-section">
+    <div class="easter-deco left"><svg width="260" height="320" viewBox="0 0 40 50" fill="white"><ellipse cx="20" cy="27" rx="18" ry="22"/></svg></div>
+    <div class="easter-deco right"><svg width="260" height="320" viewBox="0 0 40 50" fill="white"><ellipse cx="20" cy="27" rx="18" ry="22"/></svg></div>
+    <div class="section-wrap">
+        <div class="section-header">
+            <h2>Horaires Spéciaux Week-end de Pâques</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="egg-strip">
+            <svg width="30" height="38" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#f472b6"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#fbbf24" opacity="0.85"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/></svg>
+            <svg width="30" height="38" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#60a5fa"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#a78bfa" opacity="0.85"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/></svg>
+            <svg width="30" height="38" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#4ade80"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#fbbf24" opacity="0.85"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/></svg>
+            <svg width="30" height="38" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#fb923c"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#f472b6" opacity="0.85"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/></svg>
+            <svg width="30" height="38" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#a78bfa"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#60a5fa" opacity="0.85"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/></svg>
+        </div>
+        <p class="easter-intro">Notre équipe reste mobilisée durant Pâques pour assurer la continuité de vos soins. Votre santé n'attend pas !</p>
+        <div class="hours-card">
+            <div class="hours-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Horaires Exceptionnels Pâques
+            </div>
+            <div class="hours-row"><span class="day">Vendredi Saint (18 avr.)</span><span class="time">7h30 – 14h00</span></div>
+            <div class="hours-row"><span class="day">Samedi 19 avril</span><span class="time">8h00 – 13h00</span></div>
+            <div class="hours-row"><span class="day">Dimanche de Pâques (20 avr.)</span><span class="time closed">Fermé — Urgences : 01 42 56 78 99</span></div>
+            <div class="hours-row"><span class="day">Lundi de Pâques (21 avr.)</span><span class="time closed">Fermé — Urgences : 01 42 56 78 99</span></div>
+            <div class="hours-row"><span class="day">À partir du mardi 22 avril</span><span class="time">Horaires normaux</span></div>
+            <div class="hours-note">
+                <svg width="14" height="18" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="#7ef5b8"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="#fbbf24" opacity="0.8"/></svg>
+                Prélèvements à domicile disponibles durant tout le week-end de Pâques
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-wrap">
+        <div class="section-header">
+            <h2>Nous Contacter</h2>
+            <div class="divider"></div>
+            <p>Notre équipe est à votre écoute pour répondre à toutes vos questions</p>
+        </div>
+        <div class="contact-grid">
+            <div class="form-card">
+                <h3>Envoyez-nous un Message</h3>
+                <form id="contactForm">
+                    <div class="form-group"><label for="name">Nom complet *</label><input type="text" id="name" placeholder="Jean Dupont" required></div>
+                    <div class="form-group"><label for="email">Email *</label><input type="email" id="email" placeholder="jean.dupont@email.fr" required></div>
+                    <div class="form-group"><label for="phone">Téléphone *</label><input type="tel" id="phone" placeholder="06 12 34 56 78" required></div>
+                    <div class="form-group"><label for="message">Votre message *</label><textarea id="message" rows="5" placeholder="Décrivez votre demande..." required></textarea></div>
+                    <button type="submit" class="btn-submit">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Envoyer le Message
+                    </button>
+                </form>
+            </div>
+            <div class="info-card">
+                <div class="info-card-bg"><svg width="260" height="260" viewBox="0 0 40 50" fill="white"><ellipse cx="20" cy="27" rx="18" ry="22"/></svg></div>
+                <h3>Informations de Contact</h3>
+                <div class="info-item">
+                    <div class="info-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div><strong>Adresse</strong><span>123 Avenue des Champs-Élysées<br>75008 Paris, France</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.59 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.55 5.55l.95-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg></div>
+                    <div><strong>Téléphone Standard</strong><span>01 42 56 78 90<br><span style="font-size:0.83rem;opacity:0.65;">Lun-Ven : 7h30 – 19h00</span></span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                    <div><strong>Urgences 24/7</strong><span>01 42 56 78 99<br><span style="font-size:0.83rem;opacity:0.65;">Disponible jours fériés</span></span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                    <div><strong>Email</strong><a href="mailto:contact@gsb-laboratoire.fr">contact@gsb-laboratoire.fr</a><br><span style="font-size:0.83rem;opacity:0.65;">Réponse sous 24h</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div><strong>Horaires Normaux</strong><span>Lun-Ven : 7h30 – 19h00<br>Sam : 8h00 – 13h00</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <span class="brand-name">GSB</span>
+            <p>Galaxy Swiss Bourdin — Leader européen de l'analyse médicale depuis 2009. Excellence scientifique, technologies de pointe et engagement humain au service de votre santé.</p>
+            <p class="footer-spring">Joyeuses Pâques et bon printemps à tous !</p>
+        </div>
+        <div class="footer-col">
+            <h4>Liens Rapides</h4>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Nos Services</a></li>
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#paques">Horaires Pâques</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="#services">Analyses Biologiques</a></li>
+                <li><a href="#services">Analyses Génétiques</a></li>
+                <li><a href="#services">Microbiologie</a></li>
+                <li><a href="#services">Prélèvements à Domicile</a></li>
+                <li><a href="#services">Urgences 24/7</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Galaxy Swiss Bourdin (GSB) — Laboratoire d'Analyses Médicales. Tous droits réservés.</p>
+        <div class="iso-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Certification ISO 15189</div>
+    </div>
+</footer>
+
+<div class="notification" id="notification">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div><strong>Message envoyé !</strong><span>Nous vous répondrons dans les plus brefs délais.</span></div>
+</div>
+
+<script>
+// Falling Easter Eggs
+(function() {
+    const c = document.getElementById('eggsLayer');
+    const palettes = [['#f472b6','#fbbf24'],['#60a5fa','#a78bfa'],['#4ade80','#fbbf24'],['#fb923c','#f472b6'],['#a78bfa','#60a5fa'],['#fbbf24','#4ade80']];
+    for (let i = 0; i < 38; i++) {
+        const [c1,c2] = palettes[i % palettes.length];
+        const s = Math.random()*14+10, h = s*1.28;
+        const el = document.createElement('div');
+        el.className = 'egg';
+        el.innerHTML = `<svg width="${s}" height="${h}" viewBox="0 0 40 50" fill="none"><ellipse cx="20" cy="27" rx="18" ry="22" fill="${c1}" opacity="0.82"/><ellipse cx="20" cy="20" rx="18" ry="13" fill="${c2}" opacity="0.72"/><line x1="2" y1="27" x2="38" y2="27" stroke="rgba(255,255,255,0.22)" stroke-width="2.5"/></svg>`;
+        el.style.left = Math.random()*100+'%';
+        el.style.animationDuration = (Math.random()*7+6)+'s';
+        el.style.animationDelay = Math.random()*12+'s';
+        c.appendChild(el);
+    }
+})();
+
+document.getElementById('menuToggle').addEventListener('click', ()=> document.getElementById('navLinks').classList.toggle('active'));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if(!t) return; e.preventDefault();
+        window.scrollTo({top: t.getBoundingClientRect().top + window.pageYOffset - document.querySelector('header').offsetHeight, behavior:'smooth'});
+        document.getElementById('navLinks').classList.remove('active');
+    });
+});
+
+document.getElementById('easterBanner').addEventListener('click', ()=> document.getElementById('paques').scrollIntoView({behavior:'smooth',block:'start'}));
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const n = document.getElementById('notification');
+    n.classList.add('show'); this.reset();
+    setTimeout(()=> n.classList.remove('show'), 4500);
+});
+
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.style.animation='fadeUp 0.6s ease both'; obs.unobserve(e.target); }});
+}, {threshold:0.1, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.service-card,.stat-card,.feature-item').forEach(el=>{ el.style.opacity='0'; obs.observe(el); });
+</script>
+</body>
